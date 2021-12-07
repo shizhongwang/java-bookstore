@@ -1,4 +1,4 @@
-package com.onlinebookstore.config;
+package com.bookstore.config;
 
 import javax.persistence.EntityManager;
 import javax.persistence.metamodel.Type;

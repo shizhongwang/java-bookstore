@@ -1,6 +1,6 @@
-package com.onlinebookstore.repository;
+package com.bookstore.repository;
 
-import com.onlinebookstore.entity.Country;
+import com.bookstore.entity.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

@@ -1,4 +1,4 @@
-package com.onlinebookstore.entity;
+package com.bookstore.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -51,7 +49,7 @@ public class Book {
 	private Date updatedOn;
 
 	@ManyToOne
-	@JoinColumn(name="category_id", nullable=true)
+	@JoinColumn(name="category_id", nullable=false)
 	private BookCategory category;
 	
 	//add setters and getters

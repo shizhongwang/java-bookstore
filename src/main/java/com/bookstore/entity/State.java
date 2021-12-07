@@ -1,4 +1,4 @@
-package com.onlinebookstore.entity;
+package com.bookstore.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

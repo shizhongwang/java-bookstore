@@ -1,6 +1,6 @@
-package com.onlinebookstore.repository;
+package com.bookstore.repository;
 
-import com.onlinebookstore.entity.Book;
+import com.bookstore.entity.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
