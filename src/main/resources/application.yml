@@ -1,9 +1,9 @@
 server:
   port: 80
 spring:
-  data:
-    rest:
-      base-path: /api/v1
+#  data:
+#    rest:
+#      base-path: /api/v1
   main:
     banner-mode: off
   datasource:

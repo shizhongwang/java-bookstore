@@ -31,10 +31,7 @@ public class BookCategory {
 	private String categoryName;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="category")
-	@JsonIgnore
+	@JsonIgnore			//this is to resolve - Could not write JSON: Infinite recursion (StackOverflowError)
 	private Set<Book> book;
-	
-	//add setters and getters
-	//if you are not using lombok
 	
 }
