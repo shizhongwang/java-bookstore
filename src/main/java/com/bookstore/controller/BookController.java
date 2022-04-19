@@ -21,14 +21,19 @@ import java.util.Map;
 //@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @CrossOrigin
-@Api(description = "To create a special Ably token(JWT) that is needed by a client using Ably SDK, to connect with the Ably")
-@Log4j2
+//@Api(description = "To create a special Ably token(JWT) that is needed by a client using Ably SDK, to connect with the Ably")
+//@Log4j2
 @RequiredArgsConstructor
 public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
-//    @GetMapping("/books")
+    @GetMapping("/users")
+    public List<Book> getAllBookss() {
+        return bookRepository.findAll();
+    }
+
+    //    @GetMapping("/books")
     @ApiOperation("get a end user's JWT token")
     @RequestMapping(value = {"/books"}, method = RequestMethod.GET)
 //    @ApiImplicitParams(value = {
@@ -71,7 +76,7 @@ public class BookController {
 
         book.setName(bookDetails.getName());
         book.setDescription(bookDetails.getDescription());
-        book.setCategory(bookDetails.getCategory());
+        book.setCategoryId(bookDetails.getCategoryId());
 
         final Book updatedBook = bookRepository.save(book);
         return ResponseEntity.ok(updatedBook);

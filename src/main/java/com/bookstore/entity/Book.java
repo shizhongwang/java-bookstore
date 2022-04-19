@@ -16,42 +16,44 @@ import lombok.Data;
 import lombok.ToString;
 
 @Entity
-@Table(name="tbl_book")
+@Table(name = "tbl_book")
 @Data
 @ToString
 public class Book {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	private String sku;
-	
-	private String name;
-	
-	private String description;
-	
-	@Column(name="unit_price")
-	private BigDecimal unitPrice;
-	
-	@Column(name="image_url")
-	private String imageUrl;
-	
-	private boolean active;
-	
-	@Column(name="units_in_stock")
-	private int unitsInStock;
-	
-	@Column(name="date_created")
-	private Date createdOn;
-	
-	@Column(name="last_updated")
-	private Date updatedOn;
 
-	@ManyToOne
-	@JoinColumn(name="category_id", nullable=false)
-	private BookCategory category;
-	
-	//add setters and getters
-	//if you are not using lombok
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String firstParty;
+
+    private String name;
+
+    private String description;
+
+    private BigDecimal amount;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    private boolean active;
+
+    @Column(name = "units_in_stock")
+    private int unitsInStock;
+
+    @Column(name = "create_at")
+    private Date createAt;
+
+    @Column(name = "update_at")
+    private Date updateAt;
+
+    @Column(name = "category_id")
+    private Long categoryId;
+
+//	@ManyToOne
+//	@JoinColumn(name="category_id", nullable=false)
+//	private BookCategory category;
+
+    //add setters and getters
+    //if you are not using lombok
 }

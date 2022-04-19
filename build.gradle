@@ -2,12 +2,13 @@ plugins {
     id 'org.springframework.boot' version '2.4.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-    id 'war'
+//    id 'war'
 }
 
 group = 'com.bookstore'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+description = 'onlinebookstore'
 
 configurations {
     compileOnly {
@@ -18,11 +19,6 @@ configurations {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 }
-
-//        <properties>
-//        <java.version>1.8</java.version>
-//        <swagger.version>3.0.0-SNAPSHOT</swagger.version>
-//        </properties>
 
 repositories {
     mavenLocal()
@@ -53,7 +49,13 @@ dependencies {
 
     compile 'io.springfox:springfox-boot-starter:3.0.0'         //swagger 3.0
     implementation 'com.alibaba:fastjson:1.2.49'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'mysql:mysql-connector-java:5.1.46'
+
+    //@NotNull
+    implementation "org.jetbrains:annotations:15.0"
+
+//    compile 'commons-fileupload:commons-fileupload:1.4'
+    compile 'cn.hutool:hutool-all:5.3.9'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
@@ -61,7 +63,3 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-//apply from: 'gradle/scripts/bootJar.settings.gradle'
-//apply from: 'gradle/scripts/printProjectName.task.gradle'
-//apply from: 'gradle/scripts/zipRapArtifact.task.gradle'

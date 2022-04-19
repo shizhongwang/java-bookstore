@@ -17,21 +17,20 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="tbl_category")
+@Table(name = "tbl_category")
 @Setter
 @Getter
 @ToString
 public class BookCategory {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name="category_name")
-	private String categoryName;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="category")
-	@JsonIgnore			//this is to resolve - Could not write JSON: Infinite recursion (StackOverflowError)
-	private Set<Book> book;
-	
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "category_name")
+    private String categoryName;
+
+//	@OneToMany(cascade=CascadeType.ALL, mappedBy="category")
+//	@JsonIgnore			//this is to resolve - Could not write JSON: Infinite recursion (StackOverflowError)
+//	private Set<Book> book;
 }
