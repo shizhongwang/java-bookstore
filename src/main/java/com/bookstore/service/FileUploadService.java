@@ -27,34 +27,53 @@ public class FileUploadService {
 
     public void storeFile(MultipartFile file, HttpServletRequest request) {
         try {
-            // 把文件保存到当前项目的路径下面
-            String rootPath = request.getSession().getServletContext().getRealPath("/uploadfile/");
-            String format = LocalDateTime.now().format(formatter);
-            File dir = new File(rootPath + format);
-            if (!dir.isDirectory()) {
-                dir.mkdirs();
-            }
-            // 通过 UUID 生成新的文件名防止文件名重复
+//            // 把文件保存到当前项目的路径下面
+//            String rootPath = request.getSession().getServletContext().getRealPath("/uploadfile/");
+//            String format = LocalDateTime.now().format(formatter);
+//            File dir = new File(rootPath + format);
+//            if (!dir.isDirectory()) {
+//                dir.mkdirs();
+//            }
+//            // 通过 UUID 生成新的文件名防止文件名重复
+//            String oldName = file.getOriginalFilename();
+//            String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf("."), oldName.length());
+//
+//            LogManager.getLogger().debug(oldName + "--->>>" + dir + "/" + newName);
+//
+//            //保存文件
+//            file.transferTo(new File(dir, newName));
+//            // 返回文件路径
+//            String filePath = String.format("%s://%s:%d/uploadfile/%s/%s", request.getScheme(),
+//                    request.getServerName(), request.getServerPort(),
+//                    format, newName);
+
+
+            File dir = getDir(request);
             String oldName = file.getOriginalFilename();
-            String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf("."), oldName.length());
-
-            LogManager.getLogger().debug(oldName + "--->>>" + dir + "/" + newName);
-
-            //保存文件
-            file.transferTo(new File(dir, newName));
+            file.transferTo(new File(dir, oldName));
             // 返回文件路径
-            String filePath = String.format("%s://%s:%d/uploadfile/%s/%s", request.getScheme(),
-                    request.getServerName(), request.getServerPort(),
-                    format, newName);
-
+            String filePath = String.format("%s://%s:%d/uploadfile/%s",
+                    request.getScheme(),
+                    request.getServerName(),
+                    request.getServerPort(),
+                    oldName);
             LogManager.getLogger().debug(filePath);
 
-//            Files.copy(file.getInputStream(), this.location.resolve(Objects.requireNonNull(file.getOriginalFilename())));
+//            Path filePath = this.location.resolve(Objects.requireNonNull(file.getOriginalFilename()));
+//            Files.copy(file.getInputStream(), filePath);
         } catch (Exception e) {
             throw new RuntimeException("Failed");
         }
     }
 
+    private File getDir(HttpServletRequest request){
+        String rootPath = request.getSession().getServletContext().getRealPath("/uploadfile/");
+        File dir = new File(rootPath);
+        if (!dir.isDirectory()) {
+            dir.mkdirs();
+        }
+        return dir;
+    }
 
     public Resource loadFile(String fileName) {
         try {
